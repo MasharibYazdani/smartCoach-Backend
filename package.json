@@ -4,8 +4,8 @@
   "description": "Smart Solutions for Smarter Coaching",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "author": "Masharib Yazdani",
   "license": "ISC",
