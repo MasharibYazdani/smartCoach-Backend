@@ -21,6 +21,12 @@ const enrollmentSchema = new mongoose.Schema(
       enum: ["active", "completed", "cancelled"],
       default: "active",
     },
+
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
     // You can add grades or progress tracking later
   },
   { timestamps: true }

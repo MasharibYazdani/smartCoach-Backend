@@ -21,7 +21,7 @@ const adminSchema = new mongoose.Schema(
     },
     phone: {
       type: Number,
-      max: 10,
+      trim: true,
     },
     role: {
       type: String,

@@ -15,7 +15,7 @@ const studentSchema = new mongoose.Schema(
     },
     phone: {
       type: Number,
-      max: 10,
+      trim: true,
     },
     address: {
       type: String,
@@ -27,6 +27,12 @@ const studentSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
+    },
+
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
     },
     // You can add more personal fields as needed
   },

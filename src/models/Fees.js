@@ -23,6 +23,12 @@ const feeSchema = new mongoose.Schema(
     notes: {
       type: String,
     },
+
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
   },
   { timestamps: true }
 );
