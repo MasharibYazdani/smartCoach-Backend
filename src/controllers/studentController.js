@@ -5,7 +5,10 @@ exports.addStudent = async (req, res) => {
   try {
     const { fullName, email, phone, address, dob, gender } = req.body;
 
-    const existingStudent = await Student.findOne({ email });
+    const existingStudent = await Student.findOne({
+      email: email,
+      admin: req.admin._id,
+    });
 
     if (existingStudent) {
       return res
