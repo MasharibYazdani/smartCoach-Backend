@@ -14,8 +14,9 @@ const studentSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
-      type: Number,
-      trim: true,
+      type: String,
+      required: true,
+      match: /^[0-9]{10}$/,
     },
     address: {
       type: String,

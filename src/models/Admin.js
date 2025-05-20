@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const adminSchema = new mongoose.Schema(
   {
@@ -20,8 +21,9 @@ const adminSchema = new mongoose.Schema(
       trim: true,
     },
     phone: {
-      type: Number,
-      trim: true,
+      type: String,
+      required: true,
+      match: /^[0-9]{10}$/,
     },
     role: {
       type: String,
@@ -30,5 +32,18 @@ const adminSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+adminSchema.methods.verifyPassword = async function (passwordEnterByUser) {
+  const admin = this;
+
+  const passwordHash = admin.password;
+
+  const isPasswordCorrect = await bcrypt.compare(
+    passwordEnterByUser,
+    passwordHash
+  );
+
+  return isPasswordCorrect;
+};
 
 module.exports = mongoose.model("Admin", adminSchema);
