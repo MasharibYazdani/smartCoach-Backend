@@ -2,6 +2,7 @@ const Enrollment = require("../models/Enrollment");
 const Student = require("../models/Student");
 const Course = require("../models/Course");
 
+// Create a new enrollment
 exports.createEnrollment = async (req, res) => {
   try {
     const { student, course } = req.body;
@@ -55,6 +56,7 @@ exports.createEnrollment = async (req, res) => {
   }
 };
 
+// Get all the enrollments for a student
 exports.getStudentEnrollments = async (req, res) => {
   try {
     const { studentId } = req.params;
@@ -82,6 +84,7 @@ exports.getStudentEnrollments = async (req, res) => {
   }
 };
 
+// Get all the enrollments for a course
 exports.getCourseEnrollments = async (req, res) => {
   try {
     const { courseId } = req.params;
@@ -107,6 +110,7 @@ exports.getCourseEnrollments = async (req, res) => {
   }
 };
 
+// Update the enrollment status
 exports.updateEnrollmentStatus = async (req, res) => {
   try {
     const { id } = req.params;
@@ -148,6 +152,7 @@ exports.updateEnrollmentStatus = async (req, res) => {
   }
 };
 
+// Delete the enrollment
 exports.deleteEnrollment = async (req, res) => {
   try {
     const adminId = req.admin._id;

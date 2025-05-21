@@ -18,7 +18,6 @@ const feeSchema = new mongoose.Schema(
     paymentMethod: {
       type: String,
       enum: ["cash", "card", "online", "other"],
-      default: "cash",
     },
     notes: {
       type: String,

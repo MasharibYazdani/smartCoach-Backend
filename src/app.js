@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const { studentRouter } = require("./routes/studentsRouter");
 const { courseRouter } = require("./routes/courseRouter");
 const { enrollmentRouter } = require("./routes/enrollmentRouter");
+const { feesRouter } = require("./routes/feesRouter");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/", adminRouter);
 app.use("/", studentRouter);
 app.use("/", courseRouter);
 app.use("/", enrollmentRouter);
+app.use("/", feesRouter);
 
 connectDB()
   .then(() => {
