@@ -3,14 +3,14 @@
 POST /api/admin/register - Register new admin
 POST /api/admin/login - Admin login
 GET /api/admin/logout - Get admin profile
-PUT /api/admin/updatePassoword - Update admin profile
+PATCH /api/admin/updatePassoword - Update password
 
 # Students
 
 POST /api/students/new - Create a new student
 GET /api/students/getAllStudents - Get all students
 GET /api/students/getOneStudent/:id - Get student details
-PUT /api/students/update/:id - Update student info
+PATCH /api/students/update/:id - Update student info
 DELETE /api/students/delete/:id - Delete a student
 
 # Courses
@@ -18,7 +18,7 @@ DELETE /api/students/delete/:id - Delete a student
 POST /api/courses/new - Create a new course
 GET /api/courses/getAllCourses - Get all courses
 GET /api/courses/getOneCourse/:id - Get course details
-PUT /api/courses/update/:id - Update course info
+PATCH /api/courses/update/:id - Update course info
 DELETE /api/courses/delete/:id - Delete a course
 
 # Enrollments
@@ -26,7 +26,7 @@ DELETE /api/courses/delete/:id - Delete a course
 POST /api/enrollments - Enroll a student in a course
 GET /api/enrollments/student/:studentId - Get all courses student enrolled in
 GET /api/enrollments/course/:courseId - Get all students enrolled in course
-PUT /api/enrollments/status/:id - Update enrollment status
+PATCH /api/enrollments/statusUpdate/:id - Update enrollment status
 DELETE /api/enrollments/:id - Remove enrollment
 
 # Fees
@@ -34,5 +34,5 @@ DELETE /api/enrollments/:id - Remove enrollment
 POST /api/fees/pay - Record a payment
 GET /api/fees/student/:studentId - Get student's payment history
 GET /api/fees/enrollment/:enrollmentId - Get payments for enrollment
-PUT /api/fees/update/:id - Update payment record
+PATCH /api/fees/update/:id - Update payment record
 DELETE /api/fees/delete/:id - Delete payment record

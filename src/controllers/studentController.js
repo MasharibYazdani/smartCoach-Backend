@@ -110,7 +110,6 @@ exports.deleteStudent = async (req, res) => {
 
     res.status(200).json({ message: "Student deleted successfully" });
   } catch (error) {
-    console.error("Error deleting student:", error);
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: "Server error" + error.message });
   }
 };
