@@ -34,5 +34,4 @@ DELETE /api/enrollments/:id - Remove enrollment
 POST /api/fees/pay - Record a payment
 GET /api/fees/student/:studentId - Get student's payment history
 GET /api/fees/enrollment/:enrollmentId - Get payments for enrollment
-PATCH /api/fees/update/:id - Update payment record
 DELETE /api/fees/delete/:id - Delete payment record
