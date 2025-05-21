@@ -110,31 +110,60 @@ exports.getCourseEnrollments = async (req, res) => {
 exports.updateEnrollmentStatus = async (req, res) => {
   try {
     const { id } = req.params;
-    const adminId = req.user._id;
     const { status } = req.body;
+    const adminId = req.admin._id;
 
-    // Check if enrollment exists and belongs to logged-in admin
+    const validStatuses = ["pending", "active", "completed", "cancelled"];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({
+        message:
+          "Invalid status. Must be one of: pending, active, completed, cancelled",
+      });
+    }
+
     const enrollment = await Enrollment.findOne({ _id: id, admin: adminId });
 
     if (!enrollment) {
       return res.status(404).json({
-        message: "Enrollment not found ",
+        success: false,
+        message: "Enrollment not found",
       });
     }
 
-    // Update status
     enrollment.status = status;
+
+    // Optionally set enrollmentDate if activating
+    if (status === "active") {
+      enrollment.enrollmentDate = new Date();
+    }
+
     await enrollment.save();
 
     res.status(200).json({
-      success: true,
-      message: "Enrollment status updated successfully.",
-      data: enrollment,
+      message: `Enrollment status updated to '${status}'`,
+      enrollment,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
+    res.status(500).json({ message: "Server error " + error.message });
+  }
+};
+
+exports.deleteEnrollment = async (req, res) => {
+  try {
+    const adminId = req.admin._id;
+    const enrollmentId = req.params.id;
+
+    const deletedEnrollment = await Enrollment.findOneAndDelete({
+      _id: enrollmentId,
+      admin: adminId,
     });
+
+    if (!deletedEnrollment) {
+      return res.status(404).json({ message: "Enrollment not found" });
+    }
+
+    res.status(200).json({ message: "Enrollment deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" + error.message });
   }
 };

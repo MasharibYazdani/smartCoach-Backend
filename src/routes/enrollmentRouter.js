@@ -4,6 +4,8 @@ const {
   createEnrollment,
   getStudentEnrollments,
   getCourseEnrollments,
+  updateEnrollmentStatus,
+  deleteEnrollment,
 } = require("../controllers/enrollmentController");
 
 const enrollmentRouter = express.Router();
@@ -20,5 +22,13 @@ enrollmentRouter.get(
   adminAuth,
   getCourseEnrollments
 );
+
+enrollmentRouter.patch(
+  "/enrollment/statusUpdate/:id",
+  adminAuth,
+  updateEnrollmentStatus
+);
+
+enrollmentRouter.delete("/enrollment/delete/:id", adminAuth, deleteEnrollment);
 
 module.exports = { enrollmentRouter };
